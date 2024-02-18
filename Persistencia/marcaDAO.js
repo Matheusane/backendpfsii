@@ -1,32 +1,32 @@
-import Categoria from "../Modelo/categoria.js";
+import Marca from "../Modelo/marca.js";
 import conectar from "./conexao.js";
 //DAO = Data Access Object -> Objeto de acesso aos dados
-export default class CategoriaDAO{
-    async gravar(categoria){
-        if (categoria instanceof Categoria){
-            const sql = "INSERT INTO categoria(cat_descricao) VALUES(?)"; 
-            const parametros = [categoria.descricao];
+export default class MarcaDAO{
+    async gravar(marca){
+        if (marca instanceof Marca){
+            const sql = "INSERT INTO marca(mar_nome) VALUES(?)"; 
+            const parametros = [marca.nome];
             const conexao = await conectar(); //retorna uma conexão
             const retorno = await conexao.execute(sql,parametros); //prepara a sql e depois executa
-            categoria.codigo = retorno[0].insertId;
+            marca.codigo = retorno[0].insertId;
             global.poolConexoes.releaseConnection(conexao);
         }
     }
 
-    async atualizar(categoria){
-        if (categoria instanceof Categoria){
-            const sql = "UPDATE categoria SET cat_descricao = ? WHERE cat_codigo = ?"; 
-            const parametros = [categoria.descricao, categoria.codigo];
+    async atualizar(marca){
+        if (marca instanceof Marca){
+            const sql = "UPDATE marca SET mar_nome = ? WHERE mar_codigo = ?"; 
+            const parametros = [marca.nome, marca.codigo];
             const conexao = await conectar(); //retorna uma conexão
             await conexao.execute(sql,parametros); //prepara a sql e depois executa
             global.poolConexoes.releaseConnection(conexao);
         }
     }
 
-    async excluir(categoria){
-        if (categoria instanceof Categoria){
-            const sql = "DELETE FROM categoria WHERE cat_codigo = ?"; 
-            const parametros = [categoria.codigo];
+    async excluir(marca){
+        if (marca instanceof Marca){
+            const sql = "DELETE FROM marca WHERE mar_codigo = ?"; 
+            const parametros = [marca.codigo];
             const conexao = await conectar(); //retorna uma conexão
             await conexao.execute(sql,parametros); //prepara a sql e depois executa
             global.poolConexoes.releaseConnection(conexao);
@@ -38,25 +38,25 @@ export default class CategoriaDAO{
         let parametros=[];
         //é um número inteiro?
         if (!isNaN(parseInt(parametroConsulta))){
-            //consultar pelo código da categoria
-            sql='SELECT * FROM categoria WHERE cat_codigo = ? order by cat_descricao';
+            //consultar pelo código da marca
+            sql='SELECT * FROM marca WHERE mar_codigo = ? order by mar_nome';
             parametros = [parametroConsulta];
         }
         else{
-            //consultar pela descricao
+            //consultar pela nome
             if (!parametroConsulta){
                 parametroConsulta = '';
             }
-            sql = "SELECT * FROM categoria WHERE cat_descricao like ?";
+            sql = "SELECT * FROM marca WHERE mar_nome like ?";
             parametros = ['%'+parametroConsulta+'%'];
         }
         const conexao = await conectar();
         const [registros, campos] = await conexao.execute(sql,parametros);
-        let listaCategorias = [];
+        let listaMarcas = [];
         for (const registro of registros){
-            const categoria = new Categoria(registro.cat_codigo,registro.cat_descricao);
-            listaCategorias.push(categoria);
+            const marca = new Marca(registro.mar_codigo,registro.mar_nome);
+            listaMarcas.push(marca);
         }
-        return listaCategorias;
+        return listaMarcas;
     }
 }

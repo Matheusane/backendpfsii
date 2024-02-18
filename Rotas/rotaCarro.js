@@ -1,10 +1,10 @@
 import { Router } from "express";
-import ProdutoCtrl from "../Controle/produtoCtrl.js";
+import carroCtrl from "../Controle/carroCtrl.js";
 
-const prodCtrl = new ProdutoCtrl();
-const rotaProduto = new Router();
+const prodCtrl = new carroCtrl();
+const rotaCarro = new Router();
 
-rotaProduto
+rotaCarro
 .get('/', prodCtrl.consultar)
 .get('/:termo', prodCtrl.consultar)
 .post('/', prodCtrl.gravar)
@@ -12,4 +12,4 @@ rotaProduto
 .put('/', prodCtrl.atualizar)
 .delete('/', prodCtrl.excluir);
 
-export default rotaProduto;
+export default rotaCarro;

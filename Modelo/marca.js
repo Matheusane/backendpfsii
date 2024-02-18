@@ -1,14 +1,14 @@
-import CategoriaDAO from "../Persistencia/categoriaDAO.js";
+import MarcaDAO from "../Persistencia/marcaDAO.js";
 //não esqueça do .js no final da importação
 
-export default class Categoria {
+export default class Marca {
     //definição dos atributos privados
     #codigo;
-    #descricao;
+    #nome;
 
-    constructor(codigo=0, descricao=''){
+    constructor(codigo=0, nome=''){
         this.#codigo=codigo;
-        this.#descricao=descricao;
+        this.#nome=nome;
     }
 
     //métodos de acesso públicos
@@ -21,12 +21,12 @@ export default class Categoria {
         this.#codigo = novoCodigo;
     }
 
-    get descricao(){
-        return this.#descricao;
+    get nome(){
+        return this.#nome;
     }
 
-    set descricao(novaDesc){
-        this.#descricao = novaDesc;
+    set nome(novaDesc){
+        this.#nome = novaDesc;
     }
 
     //override do método toJSON
@@ -34,29 +34,29 @@ export default class Categoria {
     {
         return {
             codigo:this.#codigo,
-            descricao:this.#descricao
+            nome:this.#nome
         }
     }
 
     //camada de modelo acessa a camada de persistencia
     async gravar(){
-        const catDAO = new CategoriaDAO();
+        const catDAO = new MarcaDAO();
         await catDAO.gravar(this);
     }
 
     async excluir(){
-        const catDAO = new CategoriaDAO();
+        const catDAO = new MarcaDAO();
         await catDAO.excluir(this);
     }
 
     async atualizar(){
-        const catDAO = new CategoriaDAO();
+        const catDAO = new MarcaDAO();
         await catDAO.atualizar(this);
 
     }
 
     async consultar(parametro){
-        const catDAO = new CategoriaDAO();
+        const catDAO = new MarcaDAO();
         return await catDAO.consultar(parametro);
     }
 }
