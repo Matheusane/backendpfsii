@@ -51,6 +51,7 @@ export default class CarroDAO {
         let listaCarros = [];
         console.log("oi")
         if (!isNaN(parseInt(termo))){
+            
             //consulta pelo código do carro
             const sql = `SELECT c.car_codigo, c.car_nome,
               c.car_valor, c.car_anoFabricacao, 
