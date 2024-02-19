@@ -49,9 +49,7 @@ export default class CarroDAO {
         //termo é um número
         const conexao = await conectar();
         let listaCarros = [];
-        console.log("oi")
         if (!isNaN(parseInt(termo))){
-            
             //consulta pelo código do carro
             const sql = `SELECT c.car_codigo, c.car_nome,
               c.car_valor, c.car_anoFabricacao, 
@@ -80,9 +78,7 @@ export default class CarroDAO {
               c.car_valor, c.car_anoFabricacao, 
               c.car_qtdEstoque, m.mar_codigo, m.mar_nome
               FROM carro c 
-              INNER JOIN marca m ON c.mar_codigo = m.mar_codigo
-              WHERE c.car_codigo = ?
-              ORDER BY c.car_nome               
+              INNER JOIN marca m ON c.mar_codigo = m.mar_codigo           
             `;
             const parametros=['%'+termo+'%'];
             const [registros, campos] = await conexao.execute(sql,parametros);
