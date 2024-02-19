@@ -49,6 +49,7 @@ export default class CarroDAO {
         //termo é um número
         const conexao = await conectar();
         let listaCarros = [];
+        console.log("oi")
         if (!isNaN(parseInt(termo))){
             //consulta pelo código do carro
             const sql = `SELECT c.car_codigo, c.car_nome,
