@@ -1,7 +1,7 @@
 import { Router } from "express";
-import carroCtrl from "../Controle/carroCtrl.js";
+import CarroCtrl from "../Controle/carroCtrl.js";
 
-const carCtrl = new carroCtrl();
+const carCtrl = new CarroCtrl();
 const rotaCarro = new Router();
 
 rotaCarro
