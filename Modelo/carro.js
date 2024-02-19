@@ -1,4 +1,4 @@
-import CarroDAO from "../Persistencia/carrroDAO.js";
+import CarroDAO from "../Persistencia/carroDAO.js";
 
 export default class Carro{
     #codigo;
