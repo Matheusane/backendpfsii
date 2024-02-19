@@ -8,7 +8,7 @@ export default class CarroDAO {
         if (carro instanceof Carro) {
             const sql = `INSERT INTO carro(car_nome,
                 car_valor, car_anoFabricacao, car_qtdEstoque, mar_codigo)
-                VALUES(?,?,?,?,?,?)`;
+                VALUES(?,?,?,?,?)`;
             const parametros = [carro.nome, carro.valor,
             carro.anoFabricacao, carro.qtdEstoque, carro.marca.codigo];
 
