@@ -11,7 +11,6 @@ const host='0.0.0.0';
 const porta='3000';
 
 dotenv.config()
-console.log(process.env)
 
 
 const app = express();

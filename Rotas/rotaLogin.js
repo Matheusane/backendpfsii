@@ -5,4 +5,7 @@ const rotaLogin = new Router();
 
 
 rotaLogin
-.post('/'), (req, res) =>{ autenticar(req, res) }
+.post('/'), (req, res) =>{ 
+    autenticar(req, res) }
+
+export default rotaLogin
