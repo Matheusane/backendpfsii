@@ -20,7 +20,7 @@ export function autenticar(requisicao, resposta){
 }
 
 export function verificarAcesso(requisicao, resposta, next){
-    const token = requisicao.headers['auhorization']
+    const token = requisicao.headers['Authorization']
     let tokenDecodificado = ''
     if (token){
         tokenDecodificado = verificarAssinatura(token)
