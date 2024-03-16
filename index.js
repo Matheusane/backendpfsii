@@ -8,10 +8,9 @@ import session from 'express-session'
 import { verificarAcesso } from './Seguranca/autenticacao.js';
 
 const host='0.0.0.0';
-const porta='3000';
+const porta='3001';
 
 dotenv.config()
-
 
 const app = express();
 
