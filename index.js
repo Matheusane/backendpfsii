@@ -26,8 +26,8 @@ app.use(session({
 
 
 app.use('/login',rotaLogin);
-app.use('/marca',verificarAcesso, rotaMarca);
-app.use('/carro',verificarAcesso, rotaCarro);
+app.use('/marca',/*verificarAcesso,*/ rotaMarca);
+app.use('/carro',/*verificarAcesso,*/ rotaCarro);
 
 app.listen(porta, host, ()=>{
     console.log(`Servidor escutando na porta ${host}:${porta}.`);
